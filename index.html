@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate student marks, percentages, grades and GPA.">
+  <title>Student Grade Calculator</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-icon">G</span>
+      <span>Grade<span class="accent">Mate</span><small>STUDENT ACADEMIC TOOLS</small></span>
+    </a>
+    <span class="header-tag">JavaScript Project</span>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <span class="eyebrow">YOUR ACADEMIC COMPANION</span>
+      <h1>Student Grade <span class="accent">Calculator</span></h1>
+      <p>Enter your marks and get your results instantly.</p>
+    </section>
+
+    <section class="layout">
+      <form id="gradeForm" class="panel">
+        <div class="section-heading">
+          <div><h2>Student Information</h2><p>Enter the student details below.</p></div>
+          <span class="step">01</span>
+        </div>
+
+        <div class="fields">
+          <label>Student Name
+            <input id="studentName" type="text" maxlength="80"
+              placeholder="Enter student name" required>
+          </label>
+          <label>Student ID
+            <input id="studentId" type="text" maxlength="40"
+              placeholder="e.g. CSE-001" required>
+          </label>
+        </div>
+
+        <div class="section-heading subject-heading">
+          <div><h2>Subject Marks</h2><p>Enter marks out of 100 for each subject.</p></div>
+          <span class="step">02</span>
+        </div>
+
+        <div class="subject-list">
+          <label class="subject-row"><span>01</span><span>Mathematics</span>
+            <input class="mark" data-subject="Mathematics" type="number"
+              min="0" max="100" step="1" placeholder="0–100" required>
+          </label>
+          <label class="subject-row"><span>02</span><span>English</span>
+            <input class="mark" data-subject="English" type="number"
+              min="0" max="100" step="1" placeholder="0–100" required>
+          </label>
+          <label class="subject-row"><span>03</span><span>Science</span>
+            <input class="mark" data-subject="Science" type="number"
+              min="0" max="100" step="1" placeholder="0–100" required>
+          </label>
+          <label class="subject-row"><span>04</span><span>Computer Science</span>
+            <input class="mark" data-subject="Computer Science" type="number"
+              min="0" max="100" step="1" placeholder="0–100" required>
+          </label>
+          <label class="subject-row"><span>05</span><span>Bangla</span>
+            <input class="mark" data-subject="Bangla" type="number"
+              min="0" max="100" step="1" placeholder="0–100" required>
+          </label>
+        </div>
+
+        <p id="formError" class="error" role="alert" hidden></p>
+        <div class="actions">
+          <button class="primary" type="submit">Calculate Results →</button>
+          <button class="secondary" type="reset">Clear Form</button>
+        </div>
+      </form>
+
+      <aside class="panel result-panel">
+        <div class="section-heading">
+          <div><h2>Result Summary</h2><p>Your calculated performance.</p></div>
+          <span class="step">03</span>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">✎</div>
+          <h3>Ready when you are!</h3>
+          <p>Fill in the student details and marks, then click Calculate Results.</p>
+        </div>
+
+        <div id="results" hidden>
+          <div class="grade-card">
+            <span>OVERALL LETTER GRADE</span>
+            <strong id="letterGrade">—</strong>
+            <span id="resultStatus" class="status">—</span>
+          </div>
+
+          <div class="metrics">
+            <div class="metric"><span>Total Marks</span><strong id="totalMarks">—</strong><small>out of 500</small></div>
+            <div class="metric"><span>Percentage</span><strong id="percentage">—</strong><small>overall score</small></div>
+            <div class="metric"><span>GPA</span><strong id="gpa">—</strong><small>scale of 5.00</small></div>
+            <div class="metric"><span>Average</span><strong id="average">—</strong><small>per subject</small></div>
+          </div>
+
+          <div class="report-heading"><h3>Subject Breakdown</h3></div>
+          <div id="subjectResults" class="subject-results"></div>
+
+          <div class="student-summary">
+            <span>STUDENT</span><strong id="resultName">—</strong>
+            <span>STUDENT ID</span><strong id="resultId">—</strong>
+          </div>
+
+          <button id="saveButton" class="primary full-width" type="button">Save Student Record</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel records-panel">
+      <div class="section-heading">
+        <div><h2>Saved Student Records</h2><p>Records are stored in this browser.</p></div>
+        <span class="record-count" id="recordCount">0 records</span>
+      </div>
+      <div class="record-actions">
+        <button id="exportButton" class="secondary" type="button">Export CSV</button>
+        <button id="clearRecordsButton" class="danger" type="button">Clear All Records</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Student</th><th>ID</th><th>Total</th><th>Percentage</th><th>Grade</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="recordsBody"></tbody>
+        </table>
+      </div>
+      <p id="recordsEmpty" class="records-empty">No saved records yet.</p>
+    </section>
+
+    <footer>
+      <p>Built with Shimu · Student Grade Calculator</p>
+      <p>Practice project for learning HTML, CSS and JavaScript.</p>
+    </footer>
+  </main>
+</body>
+</html>
